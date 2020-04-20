@@ -11,7 +11,7 @@ Android EditText view for picking date and time
 		}
 	}
 	dependencies {
-	        implementation 'com.github.mutasemhajhasan:DateTimePickerEditText:1.0.1'
+	        implementation 'com.github.mutasemhajhasan:DateTimePickerEditText:1.0.0'
 	}
 ```
 
