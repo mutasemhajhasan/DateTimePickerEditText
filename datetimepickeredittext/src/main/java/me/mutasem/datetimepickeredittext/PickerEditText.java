@@ -2,6 +2,8 @@ package me.mutasem.datetimepickeredittext;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public abstract class PickerEditText extends AppCompatEditText implements View.OnFocusChangeListener {
+public abstract class PickerEditText extends AppCompatEditText  {
     protected Calendar date = Calendar.getInstance();
     private static final String TAG = "DatePickerEditText";
     protected String dateFormat = "yyyy/MM/dd";
@@ -37,10 +39,6 @@ public abstract class PickerEditText extends AppCompatEditText implements View.O
         init(context, attrs, defStyleAttr);
     }
 
-    @Override
-    public void setOnFocusChangeListener(View.OnFocusChangeListener l) {
-        super.setOnFocusChangeListener(this);
-    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -61,15 +59,10 @@ public abstract class PickerEditText extends AppCompatEditText implements View.O
 
     protected abstract void showPickerDialog();
 
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        if (b)
-            showPickerDialog();
-    }
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
-        sdf.applyLocalizedPattern(dateFormat);
+        sdf.applyPattern(dateFormat);
     }
 
     public void setDate(Calendar date) {
@@ -89,7 +82,7 @@ public abstract class PickerEditText extends AppCompatEditText implements View.O
     }
 
     protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        setFocusable(false);
+        setInputType(InputType.TYPE_NULL);
         if (attrs != null) {
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.PickerEditText,
                     defStyleAttr, 0);
@@ -106,4 +99,13 @@ public abstract class PickerEditText extends AppCompatEditText implements View.O
             }
         }
     }
+
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        if (focused)
+            showPickerDialog();
+        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+    }
+
+
 }

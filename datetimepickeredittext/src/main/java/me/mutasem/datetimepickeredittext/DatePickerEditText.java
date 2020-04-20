@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class DatePickerEditText extends PickerEditText implements View.OnFocusChangeListener {
+public class DatePickerEditText extends PickerEditText  {
 
     private static final String TAG = "DatePickerEditText";
 
@@ -27,10 +27,6 @@ public class DatePickerEditText extends PickerEditText implements View.OnFocusCh
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    public void setOnFocusChangeListener(OnFocusChangeListener l) {
-        super.setOnFocusChangeListener(this);
-    }
 
 
     protected void showPickerDialog() {
