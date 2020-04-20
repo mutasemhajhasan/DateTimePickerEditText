@@ -1,0 +1,3 @@
+rootProject.name='DatePickerExample'
+include ':app'
+include ':datetimepickeredittext'
